@@ -1,0 +1,14 @@
+export NVM_DIR=${HOME}/.nvm  
+chmod +x ${NVM_DIR}/*.sh
+chmod +x ${NVM_DIR}/bash_completion 
+cd ~/ws
+if [ -d frappe-bench ]; then 
+	echo "Reusing previously created frappe-bench"
+else
+	$NVM_DIR/nvm.sh && source $NVM_DIR/bash_completion && \
+		bench init frappe-bench
+fi
+
+cd ~/ws/frappe-bench
+. $NVM_DIR/bash_completion
+bench start &
